@@ -1,31 +1,26 @@
-package com.rick.mall.model.entity;
+package com.rick.mall.controller.input;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rick.mall.constant.ProductCategoryConst;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-public class Product {
+public class AddProductVIn {
 
-    private Integer productId;
+    @NotNull
     private String productName;
+    @NotNull
     private ProductCategoryConst category;
+
+    @NotNull
     private String imageUrl;
+
+    @NotNull
     private Integer price;
+
+    @NotNull
     private Integer stock;
     private String description;
-
-    private Date createDate;
-    private Date lastModifiedDate;
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
 
     public String getProductName() {
         return productName;
@@ -74,21 +69,4 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
 }

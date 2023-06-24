@@ -1,5 +1,6 @@
 package com.rick.mall.rowmapper;
 
+import com.rick.mall.constant.ProductCategoryConst;
 import com.rick.mall.model.entity.Product;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -14,7 +15,9 @@ public class ProductRowMapper implements RowMapper<Product> {
 
         product.setProductId(rs.getInt("product_id"));
         product.setProductName(rs.getString("product_name"));
-        product.setCategory(rs.getString("category"));
+        String categoryStr = rs.getString("category");
+        ProductCategoryConst productCategoryConst = ProductCategoryConst.valueOf(categoryStr);
+        product.setCategory(productCategoryConst);
         product.setImageUrl(rs.getString("image_url"));
         product.setPrice(rs.getInt("price"));
         product.setDescription(rs.getString("description"));
