@@ -1,6 +1,7 @@
 package com.rick.mall.service.impl;
 
 import com.rick.mall.controller.input.AddProductVIn;
+import com.rick.mall.controller.input.UpdateProductVIn;
 import com.rick.mall.dao.ProductDao;
 import com.rick.mall.model.entity.Product;
 import com.rick.mall.service.ProductService;
@@ -26,5 +27,11 @@ public class ProductServiceImpl implements ProductService {
 
         return productDao.createProduct(addProductVIn);
 
+    }
+
+    @Override
+    public void updateProduct(Integer productId , UpdateProductVIn updateProductVIn) {
+
+       productDao.updateProduct(productId ,updateProductVIn);
     }
 }

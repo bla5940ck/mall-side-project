@@ -1,6 +1,7 @@
 package com.rick.mall.dao.impl;
 
 import com.rick.mall.controller.input.AddProductVIn;
+import com.rick.mall.controller.input.UpdateProductVIn;
 import com.rick.mall.dao.ProductDao;
 import com.rick.mall.model.entity.Product;
 import com.rick.mall.rowmapper.ProductRowMapper;
@@ -72,5 +73,24 @@ public class ProductImpl implements ProductDao {
         int i = keyHolder.getKey().intValue();
 
         return i;
+    }
+
+    @Override
+    public void updateProduct(Integer productId ,UpdateProductVIn updateProductVIn) {
+        String sql = "UPDATE product SET product_name = :productName , category = :category ," +
+                "image_url = :imageUrl , price = :price , stock = :stock , description = :description," +
+                "last_modified_date = :lastModifiedDate WHERE product_id = :productId" ;
+
+        Map<String ,Object> map = new HashMap<>();
+        map.put("productId",productId);
+        map.put("productName",updateProductVIn.getProductName());
+        map.put("category",updateProductVIn.getCategory().toString());
+        map.put("imageUrl",updateProductVIn.getImageUrl());
+        map.put("price",updateProductVIn.getPrice());
+        map.put("stock",updateProductVIn.getStock());
+        map.put("description",updateProductVIn.getDescription());
+        map.put("lastModifiedDate",new Date());
+
+        namedParameterJdbcTemplate.update(sql,map);
     }
 }
