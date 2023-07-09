@@ -4,7 +4,7 @@ import com.rick.mall.controller.input.AddProductVIn;
 import com.rick.mall.controller.input.UpdateProductVIn;
 import com.rick.mall.model.entity.Product;
 
-public interface ProductDao {
+public interface IProductDao {
 
     Product getProductById(Integer productId);
 

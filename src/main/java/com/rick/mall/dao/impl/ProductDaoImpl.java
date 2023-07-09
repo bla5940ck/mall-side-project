@@ -2,7 +2,7 @@ package com.rick.mall.dao.impl;
 
 import com.rick.mall.controller.input.AddProductVIn;
 import com.rick.mall.controller.input.UpdateProductVIn;
-import com.rick.mall.dao.ProductDao;
+import com.rick.mall.dao.IProductDao;
 import com.rick.mall.model.entity.Product;
 import com.rick.mall.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class ProductImpl implements ProductDao {
+public class ProductDaoImpl implements IProductDao {
 
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;

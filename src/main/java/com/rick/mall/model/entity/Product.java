@@ -2,11 +2,12 @@ package com.rick.mall.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rick.mall.constant.ProductCategoryConst;
+import com.rick.mall.model.entity.common.BaseEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class Product {
+public class Product extends BaseEntity {
 
     private Integer productId;
     private String productName;
@@ -16,8 +17,6 @@ public class Product {
     private Integer stock;
     private String description;
 
-    private Date createDate;
-    private Date lastModifiedDate;
 
     public Integer getProductId() {
         return productId;
@@ -73,22 +72,6 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
     }
 
 }

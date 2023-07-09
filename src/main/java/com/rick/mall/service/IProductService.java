@@ -4,7 +4,7 @@ import com.rick.mall.controller.input.AddProductVIn;
 import com.rick.mall.controller.input.UpdateProductVIn;
 import com.rick.mall.model.entity.Product;
 
-public interface ProductService {
+public interface IProductService {
 
     /** 取得商品byId */
     Product getProductById(Integer productId);

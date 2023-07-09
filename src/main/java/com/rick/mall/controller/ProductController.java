@@ -3,7 +3,7 @@ package com.rick.mall.controller;
 import com.rick.mall.controller.input.AddProductVIn;
 import com.rick.mall.controller.input.UpdateProductVIn;
 import com.rick.mall.model.entity.Product;
-import com.rick.mall.service.ProductService;
+import com.rick.mall.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -25,12 +24,12 @@ import java.util.Date;
 public class ProductController {
 
     @Autowired
-    ProductService productService;
+    IProductService IProductService;
 
     @GetMapping("/products/{productId}")
     public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
 
-        Product product = productService.getProductById(productId);
+        Product product = IProductService.getProductById(productId);
 
         Date createDate = product.getCreateDate();
         Instant instant = createDate.toInstant();
@@ -50,9 +49,9 @@ public class ProductController {
     @PostMapping("/products")
     public ResponseEntity<Product> addProduct(@RequestBody @Valid AddProductVIn addProductVIn) {
 
-        Integer productId = productService.createProduct(addProductVIn);
+        Integer productId = IProductService.createProduct(addProductVIn);
 
-        Product product = productService.getProductById(productId);
+        Product product = IProductService.getProductById(productId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
@@ -61,16 +60,16 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@PathVariable Integer productId,
                                                  @Valid @RequestBody UpdateProductVIn updateProductVIn) {
         // 1.先去檢查product 是否存在
-        Product product = productService.getProductById(productId);
+        Product product = IProductService.getProductById(productId);
 
         if(product == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         // 2.修改商品數據
-        productService.updateProduct(productId,updateProductVIn);
+        IProductService.updateProduct(productId,updateProductVIn);
 
-        Product updateProduct = productService.getProductById(productId);
+        Product updateProduct = IProductService.getProductById(productId);
 
         return ResponseEntity.status(HttpStatus.OK).body(updateProduct);
     }
